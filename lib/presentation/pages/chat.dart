@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:morket_ai/presentation/pages/routes_name.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -207,7 +208,9 @@ class _ChatPageState extends State<ChatPage> {
           ListTile(
             leading: const Icon(Icons.logout, color: Colors.red,),
             title: const Text('Logout', style: TextStyle(color: Colors.red),),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, RoutesNames.login);
+            },
           ),
         ],
       ),
