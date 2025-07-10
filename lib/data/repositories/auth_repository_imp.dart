@@ -1,6 +1,7 @@
 import 'package:morket_ai/core/constants/api_constant.dart';
 import 'package:morket_ai/core/errors/errors.dart';
 import 'package:morket_ai/core/network/network_client.dart';
+import 'package:morket_ai/data/models/chat_model.dart';
 import 'package:morket_ai/data/models/user_model.dart';
 import 'package:morket_ai/data/repositories/auth_repository.dart';
 import 'package:morket_ai/domain/entities/user_entity.dart';
@@ -65,4 +66,21 @@ Future<UserEntity> login(String username, String password) async {
     throw ServerException('Login failed: ${e.toString()}');
   }
 }
+
+@override
+  Future<ChatResponse> chat(
+      String messages) async {
+    try {
+      final response = await _networkClient.dio.post(
+        ApiConstants.aiChat,
+        data: ChatRequest(
+          // Gunakan model request
+          messages:messages
+        ).toJson(),
+      );
+      return ChatResponse.fromJson(response.data); // Gunakan model response
+    } catch (e) {
+      throw ServerException('chat failed: ${e.toString()}');
+    }
+  }
 }

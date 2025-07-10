@@ -21,6 +21,14 @@ class AuthService{
     return response.data;
   }
 
+    Future <Map<String, dynamic>> chat(String messages) async {
+    final response= await _networkClient.dio.post(ApiConstants.aiChat, data:{
+      'messages':messages
+    });
+    return response.data;
+  }
+
+
 
 }
 

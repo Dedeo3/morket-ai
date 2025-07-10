@@ -1,4 +1,5 @@
 
+import 'package:morket_ai/data/models/chat_model.dart';
 import 'package:morket_ai/data/models/user_model.dart';
 import 'package:morket_ai/data/repositories/auth_repository.dart';
 import 'package:morket_ai/domain/entities/user_entity.dart';
@@ -22,5 +23,16 @@ class RegisterUseCase {
     // Validasi tetap sama
     final user = await _authRepository.register(email, username, password);
     return user; // Langsung return UserEntity
+  }
+}
+
+class ChatUseCase {
+  final AuthRepository _authRepository; // Gunakan abstract, bukan implementasi
+  ChatUseCase(this._authRepository);
+
+  Future<ChatResponse> execute(String messages) async {
+    // Validasi tetap sama
+    final chat = await _authRepository.chat(messages);
+    return chat; // Langsung return UserEntity
   }
 }
